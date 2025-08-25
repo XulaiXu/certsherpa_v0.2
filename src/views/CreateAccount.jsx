@@ -57,21 +57,30 @@ const CreateAccount = () => {
       <div className="card-login">
         <div className="logo-container">
           <Logo width={120} height={111} className="centered-logo" />
+        </div>
+        
+        <div style={{ textAlign: 'center', marginTop: '-5px', marginBottom: '20px' }}>
           <img 
             src="/certsherpa_text.svg" 
             alt="CertSherpa Text" 
             style={{ 
               width: 'auto', 
-              maxWidth: '300px', 
+              maxWidth: '225px', 
               height: 'auto',
-              marginTop: '20px',
               display: 'block',
-              margin: '20px auto 0 auto'
+              margin: '0 auto'
             }}
           />
         </div>
-
-        <h3 className="text-center mb-3">Create Account</h3>
+        
+        <hr style={{ 
+          width: '120px', 
+          margin: '20px auto 15px auto', 
+          border: '1px solid #999',
+          opacity: 0.8
+        }} />
+        
+        <h4 className="text-center mb-3">Create Account</h4>
 
         <Form onSubmit={handleSubmit}>
           <div className="form-group">
