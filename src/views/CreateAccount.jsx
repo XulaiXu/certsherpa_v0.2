@@ -1,18 +1,22 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card, CardHeader, CardBody, CardTitle, Form, FormGroup, Label, Input, Button, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
+import Logo from "../assets/components/logo";
 import "../assets/css/auth.css";
 
-function CreateAccount() {
+const CreateAccount = () => {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    examType: "",
-    examDate: ""
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    examType: '',
+    examDate: ''
   });
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -21,10 +25,34 @@ function CreateAccount() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: Implement account creation logic
-    // For now, just prevent form submission
+    setError(''); // Clear any previous errors
+    
+    if (formData.password !== formData.confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      // TODO: Implement account creation logic
+      // Simulate API call delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // If we get here without an error, account creation was successful
+      setError(''); // Clear any errors
+      
+      // Redirect to dashboard after a short delay
+      setTimeout(() => {
+        navigate('/account/dashboard', { replace: true });
+      }, 500);
+      
+    } catch (error) {
+      setError(error.message || 'An unexpected error occurred');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -33,6 +61,9 @@ function CreateAccount() {
         <Col lg="8" md="10" sm="12">
           <Card className="auth-card">
             <CardHeader className="text-center">
+              <div className="text-center mb-3">
+                <Logo width={80} height={74} className="mb-3" />
+              </div>
               <CardTitle tag="h3">Create Your Account</CardTitle>
               <p className="card-category">Join CertSherpa and start your engineering exam preparation journey</p>
             </CardHeader>
@@ -41,13 +72,13 @@ function CreateAccount() {
                 <Row>
                   <Col md="6">
                     <FormGroup>
-                      <Label for="firstName">First Name</Label>
+                      <Label for="username">Username</Label>
                       <Input
                         type="text"
-                        name="firstName"
-                        id="firstName"
-                        placeholder="Enter your first name"
-                        value={formData.firstName}
+                        name="username"
+                        id="username"
+                        placeholder="Enter your username"
+                        value={formData.username}
                         onChange={handleChange}
                         required
                       />
@@ -55,32 +86,19 @@ function CreateAccount() {
                   </Col>
                   <Col md="6">
                     <FormGroup>
-                      <Label for="lastName">Last Name</Label>
+                      <Label for="email">Email Address</Label>
                       <Input
-                        type="text"
-                        name="lastName"
-                        id="lastName"
-                        placeholder="Enter your last name"
-                        value={formData.lastName}
+                        type="email"
+                        name="email"
+                        id="email"
+                        placeholder="Enter your email address"
+                        value={formData.email}
                         onChange={handleChange}
                         required
                       />
                     </FormGroup>
                   </Col>
                 </Row>
-                
-                <FormGroup>
-                  <Label for="email">Email Address</Label>
-                  <Input
-                    type="email"
-                    name="email"
-                    id="email"
-                    placeholder="Enter your email address"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                  />
-                </FormGroup>
 
                 <Row>
                   <Col md="6">
@@ -146,9 +164,24 @@ function CreateAccount() {
                   </Col>
                 </Row>
 
+                {error && (
+                  <div className="error-message text-center mb-3">
+                    <div className="alert alert-danger" role="alert">
+                      {error}
+                    </div>
+                  </div>
+                )}
+
                 <FormGroup className="text-center">
-                  <Button color="primary" size="lg" block type="submit">
-                    Create Account
+                  <Button 
+                    color="primary" 
+                    size="lg" 
+                    block 
+                    type="submit"
+                    disabled={isLoading}
+                    className="btn-round"
+                  >
+                    {isLoading ? 'Creating Account...' : 'Create Account'}
                   </Button>
                 </FormGroup>
                 
@@ -167,6 +200,6 @@ function CreateAccount() {
       </Row>
     </div>
   );
-}
+};
 
 export default CreateAccount;

@@ -98,6 +98,96 @@
   transform: translateY(0);
 }
 
+/* Button round styling */
+.btn-round {
+  border-radius: 30px !important;
+  padding: 12px 30px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  transition: all 0.3s ease !important;
+}
+
+.btn-round:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2) !important;
+}
+
+.btn-round:disabled {
+  opacity: 0.7 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+}
+
+/* Error message styling */
+.error-message {
+  margin-bottom: 20px;
+}
+
+.error-message .alert {
+  border-radius: 8px;
+  border: none;
+  padding: 15px 20px;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+.error-message .alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border-left: 4px solid #dc3545;
+}
+
+/* Loading state styling */
+.btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Logo styling */
+.auth-card .logo-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.auth-card .logo-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Form validation styling */
+.auth-card .form-control.is-invalid {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+.auth-card .form-control.is-valid {
+  border-color: #28a745;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .auth-container {
+    padding: 20px 10px;
+  }
+  
+  .auth-card .card-body {
+    padding: 30px 20px;
+  }
+  
+  .auth-card .btn {
+    padding: 12px 20px;
+    font-size: 1rem;
+  }
+  
+  .btn-round {
+    padding: 10px 25px !important;
+    font-size: 0.9rem !important;
+  }
+}
+
+/* Link styling */
 .auth-link {
   color: #51cbce;
   text-decoration: none;
@@ -110,63 +200,21 @@
   text-decoration: underline;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .auth-container {
-    padding: 20px 15px;
-  }
-  
-  .auth-card .card-header {
-    padding: 25px 15px;
-  }
-  
-  .auth-card .card-header h3 {
-    font-size: 1.5rem;
-  }
-  
-  .auth-card .card-body {
-    padding: 30px 20px;
-  }
-  
-  .auth-card .btn {
-    padding: 12px 25px;
-    font-size: 1rem;
-  }
-}
-
-/* Form validation styles */
-.auth-card .form-control.is-invalid {
-  border-color: #ef8157;
-  background-color: #fff5f5;
-}
-
-.auth-card .form-control.is-valid {
-  border-color: #6bd098;
-  background-color: #f8fff9;
-}
-
-/* Loading state for buttons */
-.auth-card .btn:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-}
-
-/* Success/error message styling */
-.auth-message {
-  padding: 15px;
-  border-radius: 8px;
+/* Success message styling */
+.success-message {
   margin-bottom: 20px;
-  text-align: center;
 }
 
-.auth-message.success {
+.success-message .alert {
+  border-radius: 8px;
+  border: none;
+  padding: 15px 20px;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+.success-message .alert-success {
   background-color: #d4edda;
   color: #155724;
-  border: 1px solid #c3e6cb;
-}
-
-.auth-message.error {
-  background-color: #f8d7da;
-  color: #721c24;
-  border: 1px solid #f5c6cb;
+  border-left: 4px solid #28a745;
 }
