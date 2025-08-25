@@ -15,6 +15,7 @@
 import React from "react";
 import { Card, CardHeader, CardBody, CardTitle, Row, Col, Button } from "reactstrap";
 import { Link } from "react-router-dom";
+import Logo from "../assets/components/logo";
 import "../assets/css/dashboard.css";
 import "./icons.css";
 
@@ -24,10 +25,13 @@ function Dashboard() {
       {/* Navigation Header */}
       <div className="dashboard-nav mb-4">
         <Row className="align-items-center">
-          <Col md="8">
-            <h2 className="mb-0">CertSherpa Dashboard</h2>
+          <Col md="6">
+            <div className="d-flex align-items-center">
+              <Logo width={40} height={37} className="me-3" />
+              <h2 className="mb-0">CertSherpa Dashboard</h2>
+            </div>
           </Col>
-          <Col md="4" className="text-right">
+          <Col md="6" className="text-right">
             <Link to="/login">
               <Button color="secondary" size="sm" className="mr-2">
                 Sign Out

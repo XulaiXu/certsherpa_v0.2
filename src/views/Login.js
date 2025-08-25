@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Card, CardHeader, CardBody, CardTitle, Form, FormGroup, Label, Input, Button, Row, Col } from "reactstrap";
+import Logo from "../assets/components/logo";
 import "../assets/css/auth.css";
 
 function Login() {
@@ -27,6 +28,9 @@ function Login() {
         <Col lg="6" md="8" sm="12">
           <Card className="auth-card">
             <CardHeader className="text-center">
+              <div className="text-center mb-3">
+                <Logo width={80} height={74} className="mb-3" />
+              </div>
               <CardTitle tag="h3">Welcome Back</CardTitle>
               <p className="card-category">Sign in to your CertSherpa account</p>
             </CardHeader>
