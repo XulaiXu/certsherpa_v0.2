@@ -4,7 +4,7 @@ const Logo = ({ width = 889, height = 825, className }) => (
   <svg
     width={width}
     height={height}
-    viewBox="0 0 889 825"
+    viewBox="0 0 450 420"
     fill="none"
     version="1.0"
     id="svg1"
