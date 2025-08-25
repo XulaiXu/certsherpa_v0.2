@@ -1,2 +1,2 @@
 // Navbar component exports will go here
-export default {};
+export { default as Header } from './Navbar';
