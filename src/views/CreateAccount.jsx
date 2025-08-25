@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Card, CardHeader, CardBody, CardTitle, Form, FormGroup, Label, Input, Button, Row, Col } from "reactstrap";
+import { Link } from "react-router-dom";
 import "../assets/css/auth.css";
 
 function CreateAccount() {
@@ -23,7 +24,7 @@ function CreateAccount() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // TODO: Implement account creation logic
-    console.log("Account creation attempt:", formData);
+    // For now, just prevent form submission
   };
 
   return (
@@ -154,9 +155,9 @@ function CreateAccount() {
                 <div className="text-center">
                   <p className="mb-0">
                     Already have an account?{" "}
-                    <a href="/login" className="auth-link">
+                    <Link to="/login" className="auth-link">
                       Sign in here
-                    </a>
+                    </Link>
                   </p>
                 </div>
               </Form>

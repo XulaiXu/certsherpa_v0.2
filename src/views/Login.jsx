@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Card, CardHeader, CardBody, CardTitle, Form, FormGroup, Label, Input, Button, Row, Col } from "reactstrap";
+import { Link } from "react-router-dom";
 import Logo from "../assets/components/logo";
 import "../assets/css/auth.css";
 
@@ -19,7 +20,7 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // TODO: Implement login logic
-    console.log("Login attempt:", formData);
+    // For now, just prevent form submission
   };
 
   return (
@@ -68,13 +69,13 @@ function Login() {
                 <div className="text-center">
                   <p className="mb-0">
                     Don't have an account?{" "}
-                    <a href="/create-account" className="auth-link">
+                    <Link to="/create-account" className="auth-link">
                       Create one here
-                    </a>
+                    </Link>
                   </p>
-                  <a href="/forgot-password" className="auth-link">
+                  <Link to="/forgot-password" className="auth-link">
                     Forgot your password?
-                  </a>
+                  </Link>
                 </div>
               </Form>
             </CardBody>
