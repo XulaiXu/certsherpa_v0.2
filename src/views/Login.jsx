@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { Card, CardHeader, CardBody, CardTitle, Form, FormGroup, Label, Input, Button, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 import Logo from "../assets/components/logo";
-import "../assets/css/auth.css";
+import "../assets/scss/auth.scss";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -36,20 +36,20 @@ const Login = () => {
     e.preventDefault();
     setError('');
     setIsLoading(true);
-    
+
     try {
       // TODO: Implement login logic
       // Simulate API call delay
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
+
       // If we get here without an error, login was successful
       setError(''); // Clear any errors
-      
+
       // Redirect to dashboard after a short delay
       setTimeout(() => {
         navigate('/account/dashboard', { replace: true });
       }, 500);
-      
+
     } catch (error) {
       setError(error.message || 'Failed to sign in');
     } finally {
@@ -72,97 +72,86 @@ const Login = () => {
   };
 
   return (
-    <div className="auth-container">
-      <Row className="justify-content-center">
-        <Col lg="6" md="8" sm="12">
-          <Card className="auth-card">
-            <CardHeader className="text-center">
-              <div className="text-center mb-3">
-                <Logo width={80} height={74} className="mb-3" />
+    <div className="login-page">
+      <div className="card-login">
+        <div className="logo-container">
+          <Logo width={240} height={222} className="centered-logo" />
+        </div>
+
+        <h3 className="text-center mb-3">Welcome Back</h3>
+        <p className="text-center text-muted mb-4">Sign in to your CertSherpa account</p>
+
+        <Form onSubmit={handleSubmit}>
+          {successMessage && (
+            <div className="success-message text-center mb-3">
+              <div className="alert alert-success" role="alert">
+                {successMessage}
               </div>
-              <CardTitle tag="h3">Welcome Back</CardTitle>
-              <p className="card-category">Sign in to your CertSherpa account</p>
-            </CardHeader>
-            <CardBody>
-              <Form onSubmit={handleSubmit}>
-                {successMessage && (
-                  <div className="success-message text-center mb-3">
-                    <div className="alert alert-success" role="alert">
-                      {successMessage}
-                    </div>
-                  </div>
-                )}
-                
-                <FormGroup>
-                  <Label for="email">Email Address</Label>
-                  <Input
-                    type="email"
-                    name="email"
-                    id="email"
-                    placeholder="Enter your email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                  />
-                </FormGroup>
-                
-                <FormGroup>
-                  <Label for="password">Password</Label>
-                  <Input
-                    type="password"
-                    name="password"
-                    id="password"
-                    placeholder="Enter your password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    required
-                  />
-                </FormGroup>
-                
-                {error && (
-                  <div className="error-message text-center mb-3">
-                    <div className="alert alert-danger" role="alert">
-                      {error}
-                    </div>
-                  </div>
-                )}
-                
-                <FormGroup className="text-center">
-                  <Button 
-                    color="primary" 
-                    size="lg" 
-                    block 
-                    type="submit"
-                    disabled={isLoading}
-                    className="btn-round"
-                  >
-                    {isLoading ? 'Signing In...' : 'Sign In'}
-                  </Button>
-                </FormGroup>
-                
-                <div className="text-center">
-                  <button 
-                    type="button" 
-                    onClick={handleForgotPassword}
-                    className="forgot-password-btn"
-                  >
-                    Forgot Password?
-                  </button>
-                </div>
-                
-                <div className="text-center mt-3">
-                  <p className="mb-0">
-                    Don't have an account?{" "}
-                    <Link to="/create-account" className="auth-link">
-                      Create one here
-                    </Link>
-                  </p>
-                </div>
-              </Form>
-            </CardBody>
-          </Card>
-        </Col>
-      </Row>
+            </div>
+          )}
+
+          <div className="form-group">
+            <Label for="email">Email Address</Label>
+            <Input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Enter your email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <Label for="password">Password</Label>
+            <Input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Enter your password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          {error && (
+            <div className="error-message text-center mb-3">
+              <div className="alert alert-danger" role="alert">
+                {error}
+              </div>
+            </div>
+          )}
+
+          <button
+            type="submit"
+            className="btn-round"
+            disabled={isLoading}
+          >
+            {isLoading ? 'Signing In...' : 'Sign In'}
+          </button>
+
+          <div className="text-center mt-3">
+            <button
+              type="button"
+              onClick={handleForgotPassword}
+              className="forgot-password-btn"
+            >
+              Forgot Password?
+            </button>
+          </div>
+
+          <div className="create-account-link">
+            <p className="mb-0">
+              Don't have an account?{" "}
+              <Link to="/create-account">
+                Create one here
+              </Link>
+            </p>
+          </div>
+        </Form>
+      </div>
     </div>
   );
 };
