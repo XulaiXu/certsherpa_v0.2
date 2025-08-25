@@ -59,7 +59,7 @@ const CreateAccount = () => {
     <div className="login-page">
       <div className="card-login">
         <div className="logo-container">
-          <Logo width={240} height={222} className="centered-logo" />
+          <Logo width={120} height={111} className="centered-logo" />
         </div>
 
         <h3 className="text-center mb-3">Create Your Account</h3>

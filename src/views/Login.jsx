@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Card, CardHeader, CardBody, CardTitle, Form, FormGroup, Label, Input, Button, Row, Col } from "reactstrap";
+import { Form, Label, Input } from "reactstrap";
 import { Link } from "react-router-dom";
 import Logo from "../assets/components/logo";
 import "../assets/scss/auth.scss";
@@ -8,78 +8,64 @@ import "../assets/scss/auth.scss";
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
-    password: ""
+    password: "",
   });
-  const [error, setError] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
+  const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    // Check for success message in location state
+    // Check for success message from password reset
     if (location.state?.message) {
       setSuccessMessage(location.state.message);
-      // Clear the message from location state
+      // Clear the state to prevent showing the message again on refresh
       window.history.replaceState({}, document.title);
     }
-  }, [location]);
+  }, [location.state]);
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
     setIsLoading(true);
+    setError("");
 
     try {
-      // TODO: Implement login logic
-      // Simulate API call delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-
-      // If we get here without an error, login was successful
-      setError(''); // Clear any errors
-
-      // Redirect to dashboard after a short delay
-      setTimeout(() => {
-        navigate('/account/dashboard', { replace: true });
-      }, 500);
-
-    } catch (error) {
-      setError(error.message || 'Failed to sign in');
+      // TODO: Implement actual login logic here
+      // For now, simulate a successful login
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      
+      // Redirect to dashboard after successful login
+      navigate("/account/dashboard");
+    } catch (err) {
+      setError(err.message || "Login failed");
     } finally {
       setIsLoading(false);
     }
   };
 
-  const handleForgotPassword = async (e) => {
-    e.preventDefault();
-    if (!formData.email) {
-      setError('Please enter your email address');
-      return;
-    }
-    try {
-      // TODO: Implement password reset logic
-      setError('Password reset instructions have been sent to your email');
-    } catch (err) {
-      setError(err.message || 'Failed to initiate password reset');
-    }
+  const handleForgotPassword = () => {
+    // Navigate to reset password page with email pre-filled if available
+    const emailParam = formData.email ? `?email=${encodeURIComponent(formData.email)}` : '';
+    navigate(`/reset-password${emailParam}`);
   };
 
   return (
     <div className="login-page">
       <div className="card-login">
         <div className="logo-container">
-          <Logo width={240} height={222} className="centered-logo" />
+          <Logo width={120} height={111} className="centered-logo" />
         </div>
 
-        <h3 className="text-center mb-3">Welcome Back</h3>
-        <p className="text-center text-muted mb-4">Sign in to your CertSherpa account</p>
+        <h3 className="text-center mb-3">CertSherpa</h3>
+        <p className="text-center text-muted mb-4">Log in account</p>
 
         <Form onSubmit={handleSubmit}>
           {successMessage && (
