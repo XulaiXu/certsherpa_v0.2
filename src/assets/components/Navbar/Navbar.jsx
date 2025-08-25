@@ -9,7 +9,7 @@ import {
   Container,
 } from "reactstrap";
 
-import routes from "routes.js";
+import routes from "../../../routes.js";
 
 function Header(props) {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -93,7 +93,6 @@ function Header(props) {
           <span className="navbar-toggler-bar navbar-kebab" />
           <span className="navbar-toggler-bar navbar-kebab" />
         </NavbarToggler>
-        <Collapse isOpen={isOpen} navbar className="justify-content-end">
         <Collapse isOpen={isOpen} navbar className="justify-content-end">
           <Nav navbar>
           </Nav>
