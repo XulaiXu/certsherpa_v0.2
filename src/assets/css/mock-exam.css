@@ -1,0 +1,194 @@
+/* Mock Exam Page Styles */
+/* Based on dashboard.css essential styles */
+
+body {
+  background-color: #f4f3ef;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #66615B;
+}
+
+.mock-exam-container {
+  min-height: 100vh;
+  background-color: #f4f3ef;
+  padding: 20px;
+}
+
+.exam-header {
+  background: white;
+  border-radius: 10px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.exam-header h1 {
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 20px;
+  font-size: 2.5em;
+}
+
+.exam-info {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.exam-info span {
+  background-color: #51cbce;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 1.1em;
+}
+
+.exam-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.exam-content .card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: none;
+}
+
+.exam-content .card-body {
+  padding: 40px;
+}
+
+.exam-content h4 {
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+}
+
+.exam-content p {
+  color: #66615B;
+  font-size: 1.1em;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.question-options {
+  margin-bottom: 40px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 15px;
+  border: 2px solid #e3e3e3;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.option:hover {
+  border-color: #51cbce;
+  background-color: #f8f9fa;
+}
+
+.option input[type="radio"] {
+  margin-right: 15px;
+  transform: scale(1.2);
+  accent-color: #51cbce;
+}
+
+.option label {
+  color: #333;
+  font-size: 1.1em;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 0;
+  flex: 1;
+}
+
+.question-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid #e3e3e3;
+}
+
+.question-progress {
+  color: #66615B;
+  font-weight: 600;
+  font-size: 1.1em;
+}
+
+.btn {
+  border-width: 2px;
+  font-weight: 600;
+  font-size: 0.8571em;
+  line-height: 1.35em;
+  text-transform: uppercase;
+  border: none;
+  margin: 10px 1px;
+  border-radius: 3px;
+  padding: 11px 22px;
+  cursor: pointer;
+  transition: all 150ms linear;
+}
+
+.btn-primary {
+  background-color: #51cbce;
+  color: #FFFFFF;
+}
+
+.btn-primary:hover {
+  background-color: #34b5b8;
+  color: #FFFFFF;
+  box-shadow: none;
+}
+
+.btn-secondary {
+  background-color: #66615B;
+  color: #FFFFFF;
+}
+
+.btn-secondary:hover {
+  background-color: #403D39;
+  color: #FFFFFF;
+  box-shadow: none;
+}
+
+.btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .exam-header {
+    padding: 20px;
+  }
+  
+  .exam-header h1 {
+    font-size: 2em;
+  }
+  
+  .exam-info {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .exam-content .card-body {
+    padding: 25px;
+  }
+  
+  .question-navigation {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+}
