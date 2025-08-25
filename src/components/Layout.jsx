@@ -2,8 +2,10 @@ import React, { useRef } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Sidebar from "../assets/components/sidebar";
 import Header from "../assets/components/Navbar";
+import Footer from "./Footer";
 import Dashboard from "../views/Dashboard";
 import PracticeTests from "../views/PracticeTests";
+// import routes from "../routes"; // Removed import
 
 function Layout() {
   const mainPanel = useRef();
@@ -11,7 +13,7 @@ function Layout() {
   return (
     <div className="wrapper">
       <Sidebar
-        routes={[
+        routes={[ // Hardcoded routes
           {
             path: "/dashboard",
             name: "Dashboard",
@@ -52,9 +54,9 @@ function Layout() {
         bgColor="white"
         activeColor="info"
       />
-      <div className="main-panel" ref={mainPanel}>
+      <div className="main-panel" ref={mainPanel} style={{ minHeight: '100vh', position: 'relative' }}>
         <Header />
-        <div className="content">
+        <div className="content" style={{ paddingBottom: '80px' }}>
           <Routes>
             <Route path="/" element={<Navigate to="/account/dashboard" replace />} />
             <Route path="/dashboard" element={<Dashboard />} />
@@ -65,6 +67,7 @@ function Layout() {
             <Route path="/settings" element={<div>Coming Soon: Settings</div>} />
           </Routes>
         </div>
+        <Footer />
       </div>
     </div>
   );

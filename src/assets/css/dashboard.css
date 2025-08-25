@@ -2534,12 +2534,13 @@ a.text-gray:focus, a.text-gray:hover {
 .footer {
   position: absolute;
   width: 100%;
-  background: transparent;
+  background: rgba(0, 0, 0, 0.1);
   bottom: 0;
-  color: #fff;
+  color: #66615B;
   z-index: 1;
-  padding: 20px 0;
-  text-align: center; }
+  padding: 10px 0;
+  text-align: center;
+  border-top: 1px solid #E3E3E3; }
 
 .footer p {
   margin-bottom: 0;

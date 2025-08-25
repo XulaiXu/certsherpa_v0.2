@@ -87,7 +87,7 @@ function Dashboard() {
           <Card>
             <CardHeader>
               <CardTitle tag="h5">Welcome to CertSherpa</CardTitle>
-              <p className="card-category">Your Engineering Exam Preparation Hub</p>
+              <p className="card-category">Civil and Structural Engineering Licensure Exam Preparation</p>
             </CardHeader>
             <CardBody>
               <Row>
@@ -95,18 +95,15 @@ function Dashboard() {
                   <h6>Getting Started</h6>
                   <ul>
                     <li>Choose your exam type (PE or SE)</li>
-                    <li>Start with breadth topics for a solid foundation</li>
-                    <li>Track your progress in each section</li>
-                    <li>Take practice quizzes to test your knowledge</li>
+                    <li>Start with Breadth or Depth</li>
                   </ul>
                 </Col>
                 <Col md="6">
                   <h6>Your Next Steps</h6>
                   <ul>
-                    <li>Complete your profile</li>
-                    <li>Set your exam date</li>
+                    <li>Complete profile</li>
+                    <li>Set exam date</li>
                     <li>Create a study schedule</li>
-                    <li>Join study groups</li>
                   </ul>
                 </Col>
               </Row>
