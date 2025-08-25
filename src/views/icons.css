@@ -1,0 +1,52 @@
+/* Nucleo Icons Font */
+@font-face {
+  font-family: 'nucleo-icons';
+  src: url('data:font/woff2;charset=utf-8;base64,d09GMgABAAAAAA...') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.nc-icon {
+  font-family: 'nucleo-icons' !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Icon definitions */
+.nc-book-bookmark:before {
+  content: "\e900";
+}
+
+.nc-ruler-pencil:before {
+  content: "\e901";
+}
+
+.nc-paper:before {
+  content: "\e902";
+}
+
+.nc-atom:before {
+  content: "\e903";
+}
+
+/* Fallback icons using Unicode symbols */
+.nc-book-bookmark:before {
+  content: "📚";
+}
+
+.nc-ruler-pencil:before {
+  content: "📏";
+}
+
+.nc-paper:before {
+  content: "📄";
+}
+
+.nc-atom:before {
+  content: "⚛";
+}
