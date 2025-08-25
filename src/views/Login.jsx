@@ -77,7 +77,6 @@ const Login = () => {
           )}
 
           <div className="form-group">
-            <Label for="email">Email Address</Label>
             <Input
               type="email"
               name="email"
@@ -90,7 +89,6 @@ const Login = () => {
           </div>
 
           <div className="form-group">
-            <Label for="password">Password</Label>
             <Input
               type="password"
               name="password"

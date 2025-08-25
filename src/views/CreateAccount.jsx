@@ -7,12 +7,9 @@ import "../assets/scss/auth.scss";
 
 const CreateAccount = () => {
   const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    examType: '',
-    examDate: ''
+    email: "",
+    password: "",
+    confirmPassword: ""
   });
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -60,27 +57,24 @@ const CreateAccount = () => {
       <div className="card-login">
         <div className="logo-container">
           <Logo width={120} height={111} className="centered-logo" />
+          <img 
+            src="/certsherpa_text.svg" 
+            alt="CertSherpa Text" 
+            style={{ 
+              width: 'auto', 
+              maxWidth: '300px', 
+              height: 'auto',
+              marginTop: '20px',
+              display: 'block',
+              margin: '20px auto 0 auto'
+            }}
+          />
         </div>
 
-        <h3 className="text-center mb-3">Create Your Account</h3>
-        <p className="text-center text-muted mb-4">Join CertSherpa and start your engineering exam preparation journey</p>
+        <h3 className="text-center mb-3">Create Account</h3>
 
         <Form onSubmit={handleSubmit}>
           <div className="form-group">
-            <Label for="username">Username</Label>
-            <Input
-              type="text"
-              name="username"
-              id="username"
-              placeholder="Enter your username"
-              value={formData.username}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div className="form-group">
-            <Label for="email">Email Address</Label>
             <Input
               type="email"
               name="email"
@@ -93,7 +87,6 @@ const CreateAccount = () => {
           </div>
 
           <div className="form-group">
-            <Label for="password">Password</Label>
             <Input
               type="password"
               name="password"
@@ -106,41 +99,12 @@ const CreateAccount = () => {
           </div>
 
           <div className="form-group">
-            <Label for="confirmPassword">Confirm Password</Label>
             <Input
               type="password"
               name="confirmPassword"
               id="confirmPassword"
               placeholder="Confirm your password"
               value={formData.confirmPassword}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div className="form-group">
-            <Label for="examType">Exam Type</Label>
-            <Input
-              type="select"
-              name="examType"
-              id="examType"
-              value={formData.examType}
-              onChange={handleChange}
-              required
-            >
-              <option value="">Select exam type</option>
-              <option value="pe">PE (Professional Engineer)</option>
-              <option value="se">SE (Structural Engineer)</option>
-            </Input>
-          </div>
-
-          <div className="form-group">
-            <Label for="examDate">Target Exam Date</Label>
-            <Input
-              type="date"
-              name="examDate"
-              id="examDate"
-              value={formData.examDate}
               onChange={handleChange}
               required
             />
