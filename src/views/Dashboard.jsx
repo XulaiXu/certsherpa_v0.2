@@ -14,8 +14,6 @@
 */
 import React from "react";
 import { Card, CardHeader, CardBody, CardTitle, Row, Col } from "reactstrap";
-import "../assets/css/dashboard.css";
-import "./icons.css";
 
 function Dashboard() {
   return (
@@ -84,7 +82,7 @@ function Dashboard() {
               <Row>
                 <Col md="4">
                   <div className="icon-big text-center icon-warning">
-                    <i className="nc-icon nc-ruler-pencil text-primary" />
+                    <i className="nc-icon nc-atom text-primary" />
                   </div>
                 </Col>
                 <Col md="8">
