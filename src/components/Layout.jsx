@@ -5,19 +5,18 @@ import Header from "../assets/components/Navbar";
 import Dashboard from "../views/Dashboard";
 import routes from "../routes";
 
-function Layout(props) {
+function Layout() {
   const mainPanel = useRef();
 
   return (
     <div className="wrapper">
       <Sidebar
-        {...props}
         routes={routes}
         bgColor="white"
         activeColor="info"
       />
       <div className="main-panel" ref={mainPanel}>
-        <Header {...props} />
+        <Header />
         <div className="content">
           <Routes>
             <Route path="/" element={<Navigate to="/account/dashboard" replace />} />

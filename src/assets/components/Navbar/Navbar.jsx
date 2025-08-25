@@ -11,7 +11,7 @@ import {
 
 import routes from "../../../routes.js";
 
-function Header(props) {
+function Header() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [color, setColor] = React.useState("transparent");
   const sidebarToggle = React.useRef();
@@ -26,11 +26,10 @@ function Header(props) {
   };
   const getBrand = () => {
     let brandName = "Default Brand";
-    routes.map((prop, key) => {
+    routes.forEach((prop) => {
       if (window.location.href.indexOf(prop.layout + prop.path) !== -1) {
         brandName = prop.name;
       }
-      return null;
     });
     return brandName;
   };
