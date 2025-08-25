@@ -1,4 +1,4 @@
-/* Paper Dashboard React - Dashboard Styles */
+/* Dashboard React - Dashboard Styles */
 
 .animated {
   -webkit-animation-duration: 1s;
@@ -4785,3 +4785,184 @@ License - nucleoapp.com/license/
 
 *, *:focus, a, a:focus {
   outline: none; }
+
+/* Paper Dashboard React - Dashboard Styles */
+
+.content {
+  padding: 20px;
+  background-color: #f4f3ef;
+  min-height: 100vh;
+}
+
+.dashboard-nav {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 1px 20px 0px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.dashboard-nav h2 {
+  color: #333;
+  font-weight: 600;
+  margin: 0;
+}
+
+.dashboard-nav .btn {
+  margin: 0;
+}
+
+.card-stats {
+  margin-bottom: 20px;
+  border: 0;
+  border-radius: 10px;
+  box-shadow: 0 1px 20px 0px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card-stats:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 25px 0px rgba(0, 0, 0, 0.15);
+}
+
+.card-stats .card-body {
+  padding: 20px;
+}
+
+.icon-big {
+  font-size: 3em;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-big i {
+  line-height: 1;
+}
+
+.text-warning {
+  color: #ff9800 !important;
+}
+
+.text-success {
+  color: #4caf50 !important;
+}
+
+.text-danger {
+  color: #f44336 !important;
+}
+
+.text-primary {
+  color: #2196f3 !important;
+}
+
+.numbers {
+  text-align: right;
+}
+
+.numbers p {
+  margin-bottom: 0;
+}
+
+.card-category {
+  font-size: 14px;
+  color: #9a9a9a;
+  margin-bottom: 5px;
+  font-weight: 400;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0;
+  color: #333;
+}
+
+.card {
+  border: 0;
+  border-radius: 10px;
+  box-shadow: 0 1px 20px 0px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.card-header {
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+  padding: 20px;
+  border-radius: 10px 10px 0 0;
+}
+
+.card-header h5 {
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #333;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-body h6 {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.card-body ul {
+  padding-left: 20px;
+  margin-bottom: 0;
+}
+
+.card-body li {
+  margin-bottom: 8px;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .content {
+    padding: 15px;
+  }
+  
+  .dashboard-nav {
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .dashboard-nav h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+  
+  .dashboard-nav .text-right {
+    text-align: left !important;
+  }
+  
+  .icon-big {
+    font-size: 2.5em;
+    min-height: 50px;
+  }
+  
+  .numbers {
+    text-align: center;
+    margin-top: 15px;
+  }
+  
+  .card-stats .card-body {
+    padding: 15px;
+  }
+}
+
+/* Bootstrap grid overrides for better spacing */
+.row {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+.col, .col-1, .col-10, .col-11, .col-12, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9 {
+  padding-left: 10px;
+  padding-right: 10px;
+}

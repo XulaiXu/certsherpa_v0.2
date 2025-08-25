@@ -13,13 +13,30 @@
 
 */
 import React from "react";
-import { Card, CardHeader, CardBody, CardTitle, Row, Col } from "reactstrap";
+import { Card, CardHeader, CardBody, CardTitle, Row, Col, Button } from "reactstrap";
+import { Link } from "react-router-dom";
 import "../assets/css/dashboard.css";
 import "./icons.css";
 
 function Dashboard() {
   return (
     <div className="content">
+      {/* Navigation Header */}
+      <div className="dashboard-nav mb-4">
+        <Row className="align-items-center">
+          <Col md="8">
+            <h2 className="mb-0">CertSherpa Dashboard</h2>
+          </Col>
+          <Col md="4" className="text-right">
+            <Link to="/login">
+              <Button color="secondary" size="sm" className="mr-2">
+                Sign Out
+              </Button>
+            </Link>
+          </Col>
+        </Row>
+      </div>
+
       <Row>
         <Col lg="3" md="6" sm="6">
           <Card className="card-stats">
