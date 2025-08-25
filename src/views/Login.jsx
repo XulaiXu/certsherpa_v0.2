@@ -1,14 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Card, CardHeader, CardBody, CardTitle, Form, FormGroup, Label, Input, Button, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 import Logo from "../assets/components/logo";
 import "../assets/css/auth.css";
 
-function Login() {
+const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: ""
   });
+  const [error, setError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    // Check for success message in location state
+    if (location.state?.message) {
+      setSuccessMessage(location.state.message);
+      // Clear the message from location state
+      window.history.replaceState({}, document.title);
+    }
+  }, [location]);
 
   const handleChange = (e) => {
     setFormData({
@@ -17,10 +32,43 @@ function Login() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: Implement login logic
-    // For now, just prevent form submission
+    setError('');
+    setIsLoading(true);
+    
+    try {
+      // TODO: Implement login logic
+      // Simulate API call delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // If we get here without an error, login was successful
+      setError(''); // Clear any errors
+      
+      // Redirect to dashboard after a short delay
+      setTimeout(() => {
+        navigate('/account/dashboard', { replace: true });
+      }, 500);
+      
+    } catch (error) {
+      setError(error.message || 'Failed to sign in');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleForgotPassword = async (e) => {
+    e.preventDefault();
+    if (!formData.email) {
+      setError('Please enter your email address');
+      return;
+    }
+    try {
+      // TODO: Implement password reset logic
+      setError('Password reset instructions have been sent to your email');
+    } catch (err) {
+      setError(err.message || 'Failed to initiate password reset');
+    }
   };
 
   return (
@@ -37,6 +85,14 @@ function Login() {
             </CardHeader>
             <CardBody>
               <Form onSubmit={handleSubmit}>
+                {successMessage && (
+                  <div className="success-message text-center mb-3">
+                    <div className="alert alert-success" role="alert">
+                      {successMessage}
+                    </div>
+                  </div>
+                )}
+                
                 <FormGroup>
                   <Label for="email">Email Address</Label>
                   <Input
@@ -49,6 +105,7 @@ function Login() {
                     required
                   />
                 </FormGroup>
+                
                 <FormGroup>
                   <Label for="password">Password</Label>
                   <Input
@@ -61,21 +118,45 @@ function Login() {
                     required
                   />
                 </FormGroup>
+                
+                {error && (
+                  <div className="error-message text-center mb-3">
+                    <div className="alert alert-danger" role="alert">
+                      {error}
+                    </div>
+                  </div>
+                )}
+                
                 <FormGroup className="text-center">
-                  <Button color="primary" size="lg" block type="submit">
-                    Sign In
+                  <Button 
+                    color="primary" 
+                    size="lg" 
+                    block 
+                    type="submit"
+                    disabled={isLoading}
+                    className="btn-round"
+                  >
+                    {isLoading ? 'Signing In...' : 'Sign In'}
                   </Button>
                 </FormGroup>
+                
                 <div className="text-center">
+                  <button 
+                    type="button" 
+                    onClick={handleForgotPassword}
+                    className="forgot-password-btn"
+                  >
+                    Forgot Password?
+                  </button>
+                </div>
+                
+                <div className="text-center mt-3">
                   <p className="mb-0">
                     Don't have an account?{" "}
                     <Link to="/create-account" className="auth-link">
                       Create one here
                     </Link>
                   </p>
-                  <Link to="/forgot-password" className="auth-link">
-                    Forgot your password?
-                  </Link>
                 </div>
               </Form>
             </CardBody>
@@ -84,6 +165,6 @@ function Login() {
       </Row>
     </div>
   );
-}
+};
 
 export default Login;

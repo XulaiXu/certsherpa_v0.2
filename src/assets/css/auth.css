@@ -218,3 +218,25 @@
   color: #155724;
   border-left: 4px solid #28a745;
 }
+
+/* Forgot password button styling */
+.forgot-password-btn {
+  background: none;
+  border: none;
+  color: #51cbce;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 5px 10px;
+  transition: color 0.3s ease;
+}
+
+.forgot-password-btn:hover {
+  color: #34b5b8;
+  text-decoration: none;
+}
+
+.forgot-password-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(81, 203, 206, 0.25);
+}
