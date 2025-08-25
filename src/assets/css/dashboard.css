@@ -310,12 +310,9 @@
   .navbar .navbar-nav > a.btn:active:hover,
   .navbar .navbar-nav > a.btn.active:focus,
   .navbar .navbar-nav > a.btn.active:hover,
-  .show >
-  .navbar .navbar-nav > a.btn.dropdown-toggle,
-  .show >
-  .navbar .navbar-nav > a.btn.dropdown-toggle:focus,
-  .show >
-  .navbar .navbar-nav > a.btn.dropdown-toggle:hover {
+  .show > .navbar .navbar-nav > a.btn.dropdown-toggle,
+  .show > .navbar .navbar-nav > a.btn.dropdown-toggle:focus,
+  .show > .navbar .navbar-nav > a.btn.dropdown-toggle:hover {
     background-color: #403D39 !important;
     color: #FFFFFF !important;
     box-shadow: none !important; }
@@ -347,18 +344,12 @@
   .navbar .navbar-nav > a.btn[disabled].focus,
   .navbar .navbar-nav > a.btn[disabled]:active,
   .navbar .navbar-nav > a.btn[disabled].active,
-  fieldset[disabled]
-  .navbar .navbar-nav > a.btn,
-  fieldset[disabled]
-  .navbar .navbar-nav > a.btn:hover,
-  fieldset[disabled]
-  .navbar .navbar-nav > a.btn:focus,
-  fieldset[disabled]
-  .navbar .navbar-nav > a.btn.focus,
-  fieldset[disabled]
-  .navbar .navbar-nav > a.btn:active,
-  fieldset[disabled]
-  .navbar .navbar-nav > a.btn.active {
+  fieldset[disabled] .navbar .navbar-nav > a.btn,
+  fieldset[disabled] .navbar .navbar-nav > a.btn:hover,
+  fieldset[disabled] .navbar .navbar-nav > a.btn:focus,
+  fieldset[disabled] .navbar .navbar-nav > a.btn.focus,
+  fieldset[disabled] .navbar .navbar-nav > a.btn:active,
+  fieldset[disabled] .navbar .navbar-nav > a.btn.active {
     background-color: #66615B;
     border-color: #66615B; }
   .btn.btn-simple,
@@ -395,8 +386,7 @@
   .open > .btn.dropdown-toggle,
   .navbar .navbar-nav > a.btn:active,
   .navbar .navbar-nav > a.btn.active,
-  .open >
-  .navbar .navbar-nav > a.btn.dropdown-toggle {
+  .open > .navbar .navbar-nav > a.btn.dropdown-toggle {
     -webkit-box-shadow: none;
     box-shadow: none;
     outline: 0 !important; }
