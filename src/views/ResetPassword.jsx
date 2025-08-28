@@ -7,7 +7,7 @@ import '../assets/scss/auth.scss';
 
 const ResetPassword = () => {
   const [formData, setFormData] = useState({
-    code: '',
+    email: '',
     newPassword: '',
     confirmPassword: ''
   });
@@ -71,7 +71,6 @@ const ResetPassword = () => {
         </div>
 
         <h3 className="text-center mb-3">Reset Password</h3>
-        <p className="text-center text-muted mb-4">Enter your verification code and new password</p>
 
         <Form onSubmit={handleSubmit}>
           {!email && (
@@ -83,20 +82,18 @@ const ResetPassword = () => {
           )}
 
           <div className="form-group">
-            <Label for="code">Verification Code</Label>
             <Input
-              type="text"
-              name="code"
-              id="code"
-              placeholder="Enter verification code"
-              value={formData.code}
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Enter email"
+              value={formData.email}
               onChange={handleChange}
               required
             />
           </div>
 
           <div className="form-group">
-            <Label for="newPassword">New Password</Label>
             <Input
               type="password"
               name="newPassword"
@@ -109,7 +106,6 @@ const ResetPassword = () => {
           </div>
 
           <div className="form-group">
-            <Label for="confirmPassword">Confirm New Password</Label>
             <Input
               type="password"
               name="confirmPassword"
