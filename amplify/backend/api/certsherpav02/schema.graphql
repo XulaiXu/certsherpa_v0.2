@@ -1,0 +1,25 @@
+type Question
+  @model
+  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] }  # all signed-in users
+  ]) {
+  id: ID!
+  text: String!
+  svgKey: String
+  answerA: String!
+  answerB: String!
+  answerC: String!
+  answerD: String!
+  correctAnswer: String!   # "A" | "B" | "C" | "D"
+  bucket: Int!
+  randomIndex: Float!
+  tags: [String]
+  difficulty: Int
+
+  @index(
+    name: "byBucketRandom",
+    queryField: "listByBucketRandom",
+    partitionKeyFields: ["bucket"],
+    sortKeyFields: ["randomIndex"]
+  )
+}

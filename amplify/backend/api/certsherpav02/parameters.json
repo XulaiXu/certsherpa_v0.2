@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "certsherpav02",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authcertsherpav02f14afe9f",
+      "Outputs.UserPoolId"
+    ]
+  }
+}
