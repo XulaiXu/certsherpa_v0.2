@@ -1,4 +1,4 @@
-import Exam_01 from "views/exam_01.jsx";
+import Exam_01 from "./views/exam_01.jsx";
 
 const routes = [
   {
