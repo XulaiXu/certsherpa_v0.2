@@ -1,7 +1,7 @@
 type Question
   @model
   @auth(rules: [
-    { allow: private, operations: [create, read, update, delete] }  # all signed-in users
+    { allow: private, operations: [create, read, update, delete] }  # any signed-in user
   ]) {
   id: ID!
   text: String!
@@ -11,15 +11,12 @@ type Question
   answerC: String!
   answerD: String!
   correctAnswer: String!   # "A" | "B" | "C" | "D"
+
+  # Random selection index: partition by bucket, sort by randomIndex
   bucket: Int!
+    @index(name: "byBucketRandom", queryField: "listByBucketRandom", sortKeyFields: ["randomIndex"])
   randomIndex: Float!
+
   tags: [String]
   difficulty: Int
-
-  @index(
-    name: "byBucketRandom",
-    queryField: "listByBucketRandom",
-    partitionKeyFields: ["bucket"],
-    sortKeyFields: ["randomIndex"]
-  )
 }
