@@ -1,3 +1,5 @@
+import Exam_01 from "views/exam_01";
+
 const routes = [
   {
     path: "/dashboard",
@@ -34,6 +36,13 @@ const routes = [
     name: "Settings",
     icon: "nc-icon nc-settings-gear-65",
     layout: "/account"
+  },
+  {
+    path: "/exam_01",
+    name: "Exam 01",
+    icon: "nc-icon nc-notes",
+    component: <Exam_01 />,
+    layout: "/account",
   }
 ];
 
