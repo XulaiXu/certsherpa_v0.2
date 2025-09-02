@@ -1,13 +1,12 @@
-# GraphQL Transformer v2 schema
-# - DynamoDB table via @model
-# - Allow Cognito users (your app) and IAM (Amplify Studio) to CRUD via @auth
-# - Secondary index for random selection: partition by bucket, sort by randomIndex
+# Transformer v2 schema for CertSherpa questions
 
 type Question
   @model
   @auth(rules: [
-    { allow: private, provider: userPools, operations: [create, read, update, delete] }, # app users (Cognito)
-    { allow: private, provider: iam,       operations: [create, read, update, delete] }  # Studio/console (IAM)
+    # App users signed in with Cognito (your site)
+    { allow: private, provider: userPools, operations: [create, read, update, delete] },
+    # Amplify Studio / AWS Console uses IAM
+    { allow: private, provider: iam,       operations: [create, read, update, delete] }
   ]) {
   id: ID!
   text: String!
@@ -16,21 +15,17 @@ type Question
   answerB: String!
   answerC: String!
   answerD: String!
-  correctAnswer: String!     # "A" | "B" | "C" | "D"
+  correctAnswer: String!    # "A" | "B" | "C" | "D"
 
   # Random selection helpers
-  bucket: Int!               # 0..99 (or any range you choose)
-  randomIndex: Float!        # 0..1
-
-  # Optional metadata
-  tags: [String]
-  difficulty: Int
-
-  # Secondary index (Transformer v2 syntax):
-  # Put @index on the PARTITION KEY field and list the SORT KEY field(s)
-  bucket: Int! @index(
+  bucket: Int!              @index(
     name: "byBucketRandom",
     sortKeyFields: ["randomIndex"],
     queryField: "listByBucketRandom"
   )
+  randomIndex: Float!
+
+  # Optional metadata
+  tags: [String]
+  difficulty: Int
 }
