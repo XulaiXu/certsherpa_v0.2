@@ -1,0 +1,36 @@
+# GraphQL Transformer v2 schema
+# - DynamoDB table via @model
+# - Allow Cognito users (your app) and IAM (Amplify Studio) to CRUD via @auth
+# - Secondary index for random selection: partition by bucket, sort by randomIndex
+
+type Question
+  @model
+  @auth(rules: [
+    { allow: private, provider: userPools, operations: [create, read, update, delete] }, # app users (Cognito)
+    { allow: private, provider: iam,       operations: [create, read, update, delete] }  # Studio/console (IAM)
+  ]) {
+  id: ID!
+  text: String!
+  svgKey: String
+  answerA: String!
+  answerB: String!
+  answerC: String!
+  answerD: String!
+  correctAnswer: String!     # "A" | "B" | "C" | "D"
+
+  # Random selection helpers
+  bucket: Int!               # 0..99 (or any range you choose)
+  randomIndex: Float!        # 0..1
+
+  # Optional metadata
+  tags: [String]
+  difficulty: Int
+
+  # Secondary index (Transformer v2 syntax):
+  # Put @index on the PARTITION KEY field and list the SORT KEY field(s)
+  bucket: Int! @index(
+    name: "byBucketRandom",
+    sortKeyFields: ["randomIndex"],
+    queryField: "listByBucketRandom"
+  )
+}
