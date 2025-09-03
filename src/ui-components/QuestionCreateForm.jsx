@@ -189,6 +189,7 @@ export default function QuestionCreateForm(props) {
     ...rest
   } = props;
   const initialValues = {
+    questionId: "",
     text: "",
     svgKey: "",
     answerA: "",
@@ -196,11 +197,14 @@ export default function QuestionCreateForm(props) {
     answerC: "",
     answerD: "",
     correctAnswer: "",
+    solution: "",
     bucket: "",
     randomIndex: "",
     tags: [],
     difficulty: "",
+    geneIndex: "",
   };
+  const [questionId, setQuestionId] = React.useState(initialValues.questionId);
   const [text, setText] = React.useState(initialValues.text);
   const [svgKey, setSvgKey] = React.useState(initialValues.svgKey);
   const [answerA, setAnswerA] = React.useState(initialValues.answerA);
@@ -210,14 +214,17 @@ export default function QuestionCreateForm(props) {
   const [correctAnswer, setCorrectAnswer] = React.useState(
     initialValues.correctAnswer
   );
+  const [solution, setSolution] = React.useState(initialValues.solution);
   const [bucket, setBucket] = React.useState(initialValues.bucket);
   const [randomIndex, setRandomIndex] = React.useState(
     initialValues.randomIndex
   );
   const [tags, setTags] = React.useState(initialValues.tags);
   const [difficulty, setDifficulty] = React.useState(initialValues.difficulty);
+  const [geneIndex, setGeneIndex] = React.useState(initialValues.geneIndex);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
+    setQuestionId(initialValues.questionId);
     setText(initialValues.text);
     setSvgKey(initialValues.svgKey);
     setAnswerA(initialValues.answerA);
@@ -225,27 +232,32 @@ export default function QuestionCreateForm(props) {
     setAnswerC(initialValues.answerC);
     setAnswerD(initialValues.answerD);
     setCorrectAnswer(initialValues.correctAnswer);
+    setSolution(initialValues.solution);
     setBucket(initialValues.bucket);
     setRandomIndex(initialValues.randomIndex);
     setTags(initialValues.tags);
     setCurrentTagsValue("");
     setDifficulty(initialValues.difficulty);
+    setGeneIndex(initialValues.geneIndex);
     setErrors({});
   };
   const [currentTagsValue, setCurrentTagsValue] = React.useState("");
   const tagsRef = React.createRef();
   const validations = {
-    text: [{ type: "Required" }],
+    questionId: [],
+    text: [],
     svgKey: [],
     answerA: [{ type: "Required" }],
     answerB: [{ type: "Required" }],
     answerC: [{ type: "Required" }],
     answerD: [{ type: "Required" }],
     correctAnswer: [{ type: "Required" }],
+    solution: [],
     bucket: [{ type: "Required" }],
     randomIndex: [{ type: "Required" }],
     tags: [],
     difficulty: [],
+    geneIndex: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -273,6 +285,7 @@ export default function QuestionCreateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
+          questionId,
           text,
           svgKey,
           answerA,
@@ -280,10 +293,12 @@ export default function QuestionCreateForm(props) {
           answerC,
           answerD,
           correctAnswer,
+          solution,
           bucket,
           randomIndex,
           tags,
           difficulty,
+          geneIndex,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -338,14 +353,52 @@ export default function QuestionCreateForm(props) {
       {...rest}
     >
       <TextField
+        label="Question id"
+        isRequired={false}
+        isReadOnly={false}
+        value={questionId}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              questionId: value,
+              text,
+              svgKey,
+              answerA,
+              answerB,
+              answerC,
+              answerD,
+              correctAnswer,
+              solution,
+              bucket,
+              randomIndex,
+              tags,
+              difficulty,
+              geneIndex,
+            };
+            const result = onChange(modelFields);
+            value = result?.questionId ?? value;
+          }
+          if (errors.questionId?.hasError) {
+            runValidationTasks("questionId", value);
+          }
+          setQuestionId(value);
+        }}
+        onBlur={() => runValidationTasks("questionId", questionId)}
+        errorMessage={errors.questionId?.errorMessage}
+        hasError={errors.questionId?.hasError}
+        {...getOverrideProps(overrides, "questionId")}
+      ></TextField>
+      <TextField
         label="Text"
-        isRequired={true}
+        isRequired={false}
         isReadOnly={false}
         value={text}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
+              questionId,
               text: value,
               svgKey,
               answerA,
@@ -353,10 +406,12 @@ export default function QuestionCreateForm(props) {
               answerC,
               answerD,
               correctAnswer,
+              solution,
               bucket,
               randomIndex,
               tags,
               difficulty,
+              geneIndex,
             };
             const result = onChange(modelFields);
             value = result?.text ?? value;
@@ -380,6 +435,7 @@ export default function QuestionCreateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
+              questionId,
               text,
               svgKey: value,
               answerA,
@@ -387,10 +443,12 @@ export default function QuestionCreateForm(props) {
               answerC,
               answerD,
               correctAnswer,
+              solution,
               bucket,
               randomIndex,
               tags,
               difficulty,
+              geneIndex,
             };
             const result = onChange(modelFields);
             value = result?.svgKey ?? value;
@@ -414,6 +472,7 @@ export default function QuestionCreateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
+              questionId,
               text,
               svgKey,
               answerA: value,
@@ -421,10 +480,12 @@ export default function QuestionCreateForm(props) {
               answerC,
               answerD,
               correctAnswer,
+              solution,
               bucket,
               randomIndex,
               tags,
               difficulty,
+              geneIndex,
             };
             const result = onChange(modelFields);
             value = result?.answerA ?? value;
@@ -448,6 +509,7 @@ export default function QuestionCreateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
+              questionId,
               text,
               svgKey,
               answerA,
@@ -455,10 +517,12 @@ export default function QuestionCreateForm(props) {
               answerC,
               answerD,
               correctAnswer,
+              solution,
               bucket,
               randomIndex,
               tags,
               difficulty,
+              geneIndex,
             };
             const result = onChange(modelFields);
             value = result?.answerB ?? value;
@@ -482,6 +546,7 @@ export default function QuestionCreateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
+              questionId,
               text,
               svgKey,
               answerA,
@@ -489,10 +554,12 @@ export default function QuestionCreateForm(props) {
               answerC: value,
               answerD,
               correctAnswer,
+              solution,
               bucket,
               randomIndex,
               tags,
               difficulty,
+              geneIndex,
             };
             const result = onChange(modelFields);
             value = result?.answerC ?? value;
@@ -516,6 +583,7 @@ export default function QuestionCreateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
+              questionId,
               text,
               svgKey,
               answerA,
@@ -523,10 +591,12 @@ export default function QuestionCreateForm(props) {
               answerC,
               answerD: value,
               correctAnswer,
+              solution,
               bucket,
               randomIndex,
               tags,
               difficulty,
+              geneIndex,
             };
             const result = onChange(modelFields);
             value = result?.answerD ?? value;
@@ -550,6 +620,7 @@ export default function QuestionCreateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
+              questionId,
               text,
               svgKey,
               answerA,
@@ -557,10 +628,12 @@ export default function QuestionCreateForm(props) {
               answerC,
               answerD,
               correctAnswer: value,
+              solution,
               bucket,
               randomIndex,
               tags,
               difficulty,
+              geneIndex,
             };
             const result = onChange(modelFields);
             value = result?.correctAnswer ?? value;
@@ -576,6 +649,43 @@ export default function QuestionCreateForm(props) {
         {...getOverrideProps(overrides, "correctAnswer")}
       ></TextField>
       <TextField
+        label="Solution"
+        isRequired={false}
+        isReadOnly={false}
+        value={solution}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              questionId,
+              text,
+              svgKey,
+              answerA,
+              answerB,
+              answerC,
+              answerD,
+              correctAnswer,
+              solution: value,
+              bucket,
+              randomIndex,
+              tags,
+              difficulty,
+              geneIndex,
+            };
+            const result = onChange(modelFields);
+            value = result?.solution ?? value;
+          }
+          if (errors.solution?.hasError) {
+            runValidationTasks("solution", value);
+          }
+          setSolution(value);
+        }}
+        onBlur={() => runValidationTasks("solution", solution)}
+        errorMessage={errors.solution?.errorMessage}
+        hasError={errors.solution?.hasError}
+        {...getOverrideProps(overrides, "solution")}
+      ></TextField>
+      <TextField
         label="Bucket"
         isRequired={true}
         isReadOnly={false}
@@ -588,6 +698,7 @@ export default function QuestionCreateForm(props) {
             : parseInt(e.target.value);
           if (onChange) {
             const modelFields = {
+              questionId,
               text,
               svgKey,
               answerA,
@@ -595,10 +706,12 @@ export default function QuestionCreateForm(props) {
               answerC,
               answerD,
               correctAnswer,
+              solution,
               bucket: value,
               randomIndex,
               tags,
               difficulty,
+              geneIndex,
             };
             const result = onChange(modelFields);
             value = result?.bucket ?? value;
@@ -626,6 +739,7 @@ export default function QuestionCreateForm(props) {
             : parseFloat(e.target.value);
           if (onChange) {
             const modelFields = {
+              questionId,
               text,
               svgKey,
               answerA,
@@ -633,10 +747,12 @@ export default function QuestionCreateForm(props) {
               answerC,
               answerD,
               correctAnswer,
+              solution,
               bucket,
               randomIndex: value,
               tags,
               difficulty,
+              geneIndex,
             };
             const result = onChange(modelFields);
             value = result?.randomIndex ?? value;
@@ -656,6 +772,7 @@ export default function QuestionCreateForm(props) {
           let values = items;
           if (onChange) {
             const modelFields = {
+              questionId,
               text,
               svgKey,
               answerA,
@@ -663,10 +780,12 @@ export default function QuestionCreateForm(props) {
               answerC,
               answerD,
               correctAnswer,
+              solution,
               bucket,
               randomIndex,
               tags: values,
               difficulty,
+              geneIndex,
             };
             const result = onChange(modelFields);
             values = result?.tags ?? values;
@@ -719,6 +838,7 @@ export default function QuestionCreateForm(props) {
             : parseInt(e.target.value);
           if (onChange) {
             const modelFields = {
+              questionId,
               text,
               svgKey,
               answerA,
@@ -726,10 +846,12 @@ export default function QuestionCreateForm(props) {
               answerC,
               answerD,
               correctAnswer,
+              solution,
               bucket,
               randomIndex,
               tags,
               difficulty: value,
+              geneIndex,
             };
             const result = onChange(modelFields);
             value = result?.difficulty ?? value;
@@ -743,6 +865,47 @@ export default function QuestionCreateForm(props) {
         errorMessage={errors.difficulty?.errorMessage}
         hasError={errors.difficulty?.hasError}
         {...getOverrideProps(overrides, "difficulty")}
+      ></TextField>
+      <TextField
+        label="Gene index"
+        isRequired={false}
+        isReadOnly={false}
+        type="number"
+        step="any"
+        value={geneIndex}
+        onChange={(e) => {
+          let value = isNaN(parseInt(e.target.value))
+            ? e.target.value
+            : parseInt(e.target.value);
+          if (onChange) {
+            const modelFields = {
+              questionId,
+              text,
+              svgKey,
+              answerA,
+              answerB,
+              answerC,
+              answerD,
+              correctAnswer,
+              solution,
+              bucket,
+              randomIndex,
+              tags,
+              difficulty,
+              geneIndex: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.geneIndex ?? value;
+          }
+          if (errors.geneIndex?.hasError) {
+            runValidationTasks("geneIndex", value);
+          }
+          setGeneIndex(value);
+        }}
+        onBlur={() => runValidationTasks("geneIndex", geneIndex)}
+        errorMessage={errors.geneIndex?.errorMessage}
+        hasError={errors.geneIndex?.hasError}
+        {...getOverrideProps(overrides, "geneIndex")}
       ></TextField>
       <Flex
         justifyContent="space-between"

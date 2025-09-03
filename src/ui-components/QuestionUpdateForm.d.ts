@@ -22,6 +22,7 @@ export declare type ValidationResponse = {
 };
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
 export declare type QuestionUpdateFormInputValues = {
+    questionId?: string;
     text?: string;
     svgKey?: string;
     answerA?: string;
@@ -29,12 +30,15 @@ export declare type QuestionUpdateFormInputValues = {
     answerC?: string;
     answerD?: string;
     correctAnswer?: string;
+    solution?: string;
     bucket?: number;
     randomIndex?: number;
     tags?: string[];
     difficulty?: number;
+    geneIndex?: number;
 };
 export declare type QuestionUpdateFormValidationValues = {
+    questionId?: ValidationFunction<string>;
     text?: ValidationFunction<string>;
     svgKey?: ValidationFunction<string>;
     answerA?: ValidationFunction<string>;
@@ -42,14 +46,17 @@ export declare type QuestionUpdateFormValidationValues = {
     answerC?: ValidationFunction<string>;
     answerD?: ValidationFunction<string>;
     correctAnswer?: ValidationFunction<string>;
+    solution?: ValidationFunction<string>;
     bucket?: ValidationFunction<number>;
     randomIndex?: ValidationFunction<number>;
     tags?: ValidationFunction<string>;
     difficulty?: ValidationFunction<number>;
+    geneIndex?: ValidationFunction<number>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type QuestionUpdateFormOverridesProps = {
     QuestionUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
+    questionId?: PrimitiveOverrideProps<TextFieldProps>;
     text?: PrimitiveOverrideProps<TextFieldProps>;
     svgKey?: PrimitiveOverrideProps<TextFieldProps>;
     answerA?: PrimitiveOverrideProps<TextFieldProps>;
@@ -57,10 +64,12 @@ export declare type QuestionUpdateFormOverridesProps = {
     answerC?: PrimitiveOverrideProps<TextFieldProps>;
     answerD?: PrimitiveOverrideProps<TextFieldProps>;
     correctAnswer?: PrimitiveOverrideProps<TextFieldProps>;
+    solution?: PrimitiveOverrideProps<TextFieldProps>;
     bucket?: PrimitiveOverrideProps<TextFieldProps>;
     randomIndex?: PrimitiveOverrideProps<TextFieldProps>;
     tags?: PrimitiveOverrideProps<TextFieldProps>;
     difficulty?: PrimitiveOverrideProps<TextFieldProps>;
+    geneIndex?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type QuestionUpdateFormProps = React.PropsWithChildren<{
     overrides?: QuestionUpdateFormOverridesProps | undefined | null;

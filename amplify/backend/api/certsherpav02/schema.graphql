@@ -22,10 +22,8 @@ type Question
   # Random selection helpers (keep these!)
   bucket: Int! @index(
     name: "byBucketRandom"
-    sortKeyFields: ["randomIndex"]
     queryField: "listByBucketRandom"
   )
-  randomIndex: Float!
 
   # Optional metadata
   tags: [String]
