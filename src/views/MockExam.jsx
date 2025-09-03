@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Card, CardHeader, CardBody, CardTitle, Button, Progress } from "reactstrap";
+import { useAuthenticator } from "@aws-amplify/ui-react";
 import { fetchMockQuestions } from "../utils/fetchMockQuestions";
+import { testDatabaseConnection } from "../utils/testDatabase";
 import "../assets/css/mock-exam.css";
 
 function MockExam() {
+  const { user, signOut } = useAuthenticator();
   const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(1);
   const [timeLeft, setTimeLeft] = useState(14400); // 4 hours in seconds
@@ -53,6 +56,23 @@ function MockExam() {
     }
   };
 
+  // Check if user is authenticated
+  if (!user) {
+    return (
+      <div className="mock-exam-container">
+        <div className="exam-content">
+          <Card>
+            <CardBody className="text-center">
+              <h2>Authentication Required</h2>
+              <p>You must be signed in to access the practice exam questions.</p>
+              <p>Please sign in to continue.</p>
+            </CardBody>
+          </Card>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="mock-exam-container">
       <div className="exam-header">
@@ -60,6 +80,29 @@ function MockExam() {
         <div className="exam-info">
           <span>Question {currentQuestion} of {questions.length || 10}</span>
           <span>Time Remaining: {Math.floor(timeLeft / 3600)}:{(timeLeft % 3600 / 60).toFixed(0).padStart(2, '0')}:{(timeLeft % 60).toFixed(0).padStart(2, '0')}</span>
+        </div>
+        <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+          <Button 
+            color="info" 
+            size="sm" 
+            onClick={async () => {
+              try {
+                console.log('🧪 Test button clicked');
+                await testDatabaseConnection();
+              } catch (error) {
+                console.error('🧪 Test failed:', error);
+              }
+            }}
+          >
+            Test Database Connection
+          </Button>
+          <Button 
+            color="secondary" 
+            size="sm" 
+            onClick={signOut}
+          >
+            Sign Out ({user.username})
+          </Button>
         </div>
       </div>
 
