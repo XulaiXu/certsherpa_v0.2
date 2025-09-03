@@ -201,7 +201,6 @@ export default function QuestionUpdateForm(props) {
     correctAnswer: "",
     solution: "",
     bucket: "",
-    randomIndex: "",
     tags: [],
     difficulty: "",
     geneIndex: "",
@@ -218,9 +217,6 @@ export default function QuestionUpdateForm(props) {
   );
   const [solution, setSolution] = React.useState(initialValues.solution);
   const [bucket, setBucket] = React.useState(initialValues.bucket);
-  const [randomIndex, setRandomIndex] = React.useState(
-    initialValues.randomIndex
-  );
   const [tags, setTags] = React.useState(initialValues.tags);
   const [difficulty, setDifficulty] = React.useState(initialValues.difficulty);
   const [geneIndex, setGeneIndex] = React.useState(initialValues.geneIndex);
@@ -239,7 +235,6 @@ export default function QuestionUpdateForm(props) {
     setCorrectAnswer(cleanValues.correctAnswer);
     setSolution(cleanValues.solution);
     setBucket(cleanValues.bucket);
-    setRandomIndex(cleanValues.randomIndex);
     setTags(cleanValues.tags ?? []);
     setCurrentTagsValue("");
     setDifficulty(cleanValues.difficulty);
@@ -275,7 +270,6 @@ export default function QuestionUpdateForm(props) {
     correctAnswer: [{ type: "Required" }],
     solution: [],
     bucket: [{ type: "Required" }],
-    randomIndex: [{ type: "Required" }],
     tags: [],
     difficulty: [],
     geneIndex: [],
@@ -316,7 +310,6 @@ export default function QuestionUpdateForm(props) {
           correctAnswer,
           solution: solution ?? null,
           bucket,
-          randomIndex,
           tags: tags ?? null,
           difficulty: difficulty ?? null,
           geneIndex: geneIndex ?? null,
@@ -390,7 +383,6 @@ export default function QuestionUpdateForm(props) {
               correctAnswer,
               solution,
               bucket,
-              randomIndex,
               tags,
               difficulty,
               geneIndex,
@@ -427,7 +419,6 @@ export default function QuestionUpdateForm(props) {
               correctAnswer,
               solution,
               bucket,
-              randomIndex,
               tags,
               difficulty,
               geneIndex,
@@ -464,7 +455,6 @@ export default function QuestionUpdateForm(props) {
               correctAnswer,
               solution,
               bucket,
-              randomIndex,
               tags,
               difficulty,
               geneIndex,
@@ -501,7 +491,6 @@ export default function QuestionUpdateForm(props) {
               correctAnswer,
               solution,
               bucket,
-              randomIndex,
               tags,
               difficulty,
               geneIndex,
@@ -538,7 +527,6 @@ export default function QuestionUpdateForm(props) {
               correctAnswer,
               solution,
               bucket,
-              randomIndex,
               tags,
               difficulty,
               geneIndex,
@@ -575,7 +563,6 @@ export default function QuestionUpdateForm(props) {
               correctAnswer,
               solution,
               bucket,
-              randomIndex,
               tags,
               difficulty,
               geneIndex,
@@ -612,7 +599,6 @@ export default function QuestionUpdateForm(props) {
               correctAnswer,
               solution,
               bucket,
-              randomIndex,
               tags,
               difficulty,
               geneIndex,
@@ -649,7 +635,6 @@ export default function QuestionUpdateForm(props) {
               correctAnswer: value,
               solution,
               bucket,
-              randomIndex,
               tags,
               difficulty,
               geneIndex,
@@ -686,7 +671,6 @@ export default function QuestionUpdateForm(props) {
               correctAnswer,
               solution: value,
               bucket,
-              randomIndex,
               tags,
               difficulty,
               geneIndex,
@@ -727,7 +711,6 @@ export default function QuestionUpdateForm(props) {
               correctAnswer,
               solution,
               bucket: value,
-              randomIndex,
               tags,
               difficulty,
               geneIndex,
@@ -745,47 +728,6 @@ export default function QuestionUpdateForm(props) {
         hasError={errors.bucket?.hasError}
         {...getOverrideProps(overrides, "bucket")}
       ></TextField>
-      <TextField
-        label="Random index"
-        isRequired={true}
-        isReadOnly={false}
-        type="number"
-        step="any"
-        value={randomIndex}
-        onChange={(e) => {
-          let value = isNaN(parseFloat(e.target.value))
-            ? e.target.value
-            : parseFloat(e.target.value);
-          if (onChange) {
-            const modelFields = {
-              questionId,
-              text,
-              svgKey,
-              answerA,
-              answerB,
-              answerC,
-              answerD,
-              correctAnswer,
-              solution,
-              bucket,
-              randomIndex: value,
-              tags,
-              difficulty,
-              geneIndex,
-            };
-            const result = onChange(modelFields);
-            value = result?.randomIndex ?? value;
-          }
-          if (errors.randomIndex?.hasError) {
-            runValidationTasks("randomIndex", value);
-          }
-          setRandomIndex(value);
-        }}
-        onBlur={() => runValidationTasks("randomIndex", randomIndex)}
-        errorMessage={errors.randomIndex?.errorMessage}
-        hasError={errors.randomIndex?.hasError}
-        {...getOverrideProps(overrides, "randomIndex")}
-      ></TextField>
       <ArrayField
         onChange={async (items) => {
           let values = items;
@@ -801,7 +743,6 @@ export default function QuestionUpdateForm(props) {
               correctAnswer,
               solution,
               bucket,
-              randomIndex,
               tags: values,
               difficulty,
               geneIndex,
@@ -867,7 +808,6 @@ export default function QuestionUpdateForm(props) {
               correctAnswer,
               solution,
               bucket,
-              randomIndex,
               tags,
               difficulty: value,
               geneIndex,
@@ -908,7 +848,6 @@ export default function QuestionUpdateForm(props) {
               correctAnswer,
               solution,
               bucket,
-              randomIndex,
               tags,
               difficulty,
               geneIndex: value,

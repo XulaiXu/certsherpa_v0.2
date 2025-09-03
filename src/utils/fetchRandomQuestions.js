@@ -5,19 +5,20 @@ const client = generateClient();
 
 export async function fetchRandomQuestions(N) {
   const bucket = Math.floor(Math.random() * 100);
-  const r = Math.random();
 
   const a = await client.graphql({
     query: listByBucketRandom,
-    variables: { bucket, randomIndex: { ge: r }, limit: N }
+    variables: { bucket, limit: N }
   });
   let items = a?.data?.listByBucketRandom?.items ?? [];
 
   if (items.length < N) {
+    // Try a different bucket if we don't have enough questions
+    const bucket2 = Math.floor(Math.random() * 100);
     const b = await client.graphql({
       query: listByBucketRandom,
-      variables: { bucket, randomIndex: { lt: r }, limit: N - items.length }
-  });
+      variables: { bucket: bucket2, limit: N - items.length }
+    });
     items = items.concat(b?.data?.listByBucketRandom?.items ?? []);
   }
 

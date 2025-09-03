@@ -32,7 +32,6 @@ export declare type QuestionCreateFormInputValues = {
     correctAnswer?: string;
     solution?: string;
     bucket?: number;
-    randomIndex?: number;
     tags?: string[];
     difficulty?: number;
     geneIndex?: number;
@@ -48,7 +47,6 @@ export declare type QuestionCreateFormValidationValues = {
     correctAnswer?: ValidationFunction<string>;
     solution?: ValidationFunction<string>;
     bucket?: ValidationFunction<number>;
-    randomIndex?: ValidationFunction<number>;
     tags?: ValidationFunction<string>;
     difficulty?: ValidationFunction<number>;
     geneIndex?: ValidationFunction<number>;
@@ -66,7 +64,6 @@ export declare type QuestionCreateFormOverridesProps = {
     correctAnswer?: PrimitiveOverrideProps<TextFieldProps>;
     solution?: PrimitiveOverrideProps<TextFieldProps>;
     bucket?: PrimitiveOverrideProps<TextFieldProps>;
-    randomIndex?: PrimitiveOverrideProps<TextFieldProps>;
     tags?: PrimitiveOverrideProps<TextFieldProps>;
     difficulty?: PrimitiveOverrideProps<TextFieldProps>;
     geneIndex?: PrimitiveOverrideProps<TextFieldProps>;
