@@ -1,9 +1,8 @@
 import { generateClient } from 'aws-amplify/api';
 import { listByBucketRandom } from '../graphql/queries';
 
-const client = generateClient();
-
 export async function fetchRandomQuestions(N) {
+  const client = generateClient(); // Call after Amplify.configure has run
   const bucket = Math.floor(Math.random() * 100);
 
   const a = await client.graphql({
