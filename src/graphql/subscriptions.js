@@ -5,6 +5,7 @@ export const onCreateQuestion = /* GraphQL */ `
   subscription OnCreateQuestion($filter: ModelSubscriptionQuestionFilterInput) {
     onCreateQuestion(filter: $filter) {
       id
+      questionId
       text
       svgKey
       answerA
@@ -12,10 +13,11 @@ export const onCreateQuestion = /* GraphQL */ `
       answerC
       answerD
       correctAnswer
+      solution
       bucket
-      randomIndex
       tags
       difficulty
+      geneIndex
       createdAt
       updatedAt
       __typename
@@ -26,6 +28,7 @@ export const onUpdateQuestion = /* GraphQL */ `
   subscription OnUpdateQuestion($filter: ModelSubscriptionQuestionFilterInput) {
     onUpdateQuestion(filter: $filter) {
       id
+      questionId
       text
       svgKey
       answerA
@@ -33,10 +36,11 @@ export const onUpdateQuestion = /* GraphQL */ `
       answerC
       answerD
       correctAnswer
+      solution
       bucket
-      randomIndex
       tags
       difficulty
+      geneIndex
       createdAt
       updatedAt
       __typename
@@ -47,6 +51,7 @@ export const onDeleteQuestion = /* GraphQL */ `
   subscription OnDeleteQuestion($filter: ModelSubscriptionQuestionFilterInput) {
     onDeleteQuestion(filter: $filter) {
       id
+      questionId
       text
       svgKey
       answerA
@@ -54,10 +59,11 @@ export const onDeleteQuestion = /* GraphQL */ `
       answerC
       answerD
       correctAnswer
+      solution
       bucket
-      randomIndex
       tags
       difficulty
+      geneIndex
       createdAt
       updatedAt
       __typename

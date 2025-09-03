@@ -5,6 +5,7 @@ export const getQuestion = /* GraphQL */ `
   query GetQuestion($id: ID!) {
     getQuestion(id: $id) {
       id
+      questionId
       text
       svgKey
       answerA
@@ -12,10 +13,11 @@ export const getQuestion = /* GraphQL */ `
       answerC
       answerD
       correctAnswer
+      solution
       bucket
-      randomIndex
       tags
       difficulty
+      geneIndex
       createdAt
       updatedAt
       __typename
@@ -31,6 +33,7 @@ export const listQuestions = /* GraphQL */ `
     listQuestions(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        questionId
         text
         svgKey
         answerA
@@ -38,10 +41,11 @@ export const listQuestions = /* GraphQL */ `
         answerC
         answerD
         correctAnswer
+        solution
         bucket
-        randomIndex
         tags
         difficulty
+        geneIndex
         createdAt
         updatedAt
         __typename
@@ -54,7 +58,6 @@ export const listQuestions = /* GraphQL */ `
 export const listByBucketRandom = /* GraphQL */ `
   query ListByBucketRandom(
     $bucket: Int!
-    $randomIndex: ModelFloatKeyConditionInput
     $sortDirection: ModelSortDirection
     $filter: ModelQuestionFilterInput
     $limit: Int
@@ -62,7 +65,6 @@ export const listByBucketRandom = /* GraphQL */ `
   ) {
     listByBucketRandom(
       bucket: $bucket
-      randomIndex: $randomIndex
       sortDirection: $sortDirection
       filter: $filter
       limit: $limit
@@ -70,6 +72,7 @@ export const listByBucketRandom = /* GraphQL */ `
     ) {
       items {
         id
+        questionId
         text
         svgKey
         answerA
@@ -77,10 +80,11 @@ export const listByBucketRandom = /* GraphQL */ `
         answerC
         answerD
         correctAnswer
+        solution
         bucket
-        randomIndex
         tags
         difficulty
+        geneIndex
         createdAt
         updatedAt
         __typename

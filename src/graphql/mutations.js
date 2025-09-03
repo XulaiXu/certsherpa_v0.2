@@ -8,6 +8,7 @@ export const createQuestion = /* GraphQL */ `
   ) {
     createQuestion(input: $input, condition: $condition) {
       id
+      questionId
       text
       svgKey
       answerA
@@ -15,10 +16,11 @@ export const createQuestion = /* GraphQL */ `
       answerC
       answerD
       correctAnswer
+      solution
       bucket
-      randomIndex
       tags
       difficulty
+      geneIndex
       createdAt
       updatedAt
       __typename
@@ -32,6 +34,7 @@ export const updateQuestion = /* GraphQL */ `
   ) {
     updateQuestion(input: $input, condition: $condition) {
       id
+      questionId
       text
       svgKey
       answerA
@@ -39,10 +42,11 @@ export const updateQuestion = /* GraphQL */ `
       answerC
       answerD
       correctAnswer
+      solution
       bucket
-      randomIndex
       tags
       difficulty
+      geneIndex
       createdAt
       updatedAt
       __typename
@@ -56,6 +60,7 @@ export const deleteQuestion = /* GraphQL */ `
   ) {
     deleteQuestion(input: $input, condition: $condition) {
       id
+      questionId
       text
       svgKey
       answerA
@@ -63,10 +68,11 @@ export const deleteQuestion = /* GraphQL */ `
       answerC
       answerD
       correctAnswer
+      solution
       bucket
-      randomIndex
       tags
       difficulty
+      geneIndex
       createdAt
       updatedAt
       __typename

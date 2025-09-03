@@ -13,16 +13,21 @@ function MockExam() {
 
   useEffect(() => {
     const loadQuestions = async () => {
+      let fetchedQuestions = [];
       try {
+        console.log('🔍 MockExam: Starting to load questions...');
         setLoading(true);
-        const fetchedQuestions = await fetchMockQuestions(10);
+        fetchedQuestions = await fetchMockQuestions(10);
+        console.log('🔍 MockExam: Received questions:', fetchedQuestions?.length || 0);
+        console.log('🔍 MockExam: First question:', fetchedQuestions?.[0]);
         setQuestions(fetchedQuestions);
         setError(null);
       } catch (err) {
-        console.error('Error loading questions:', err);
+        console.error('🔍 MockExam: Error loading questions:', err);
         setError('Failed to load questions. Using demo questions.');
       } finally {
         setLoading(false);
+        console.log('🔍 MockExam: Loading complete. Questions count:', fetchedQuestions?.length || 0);
       }
     };
 

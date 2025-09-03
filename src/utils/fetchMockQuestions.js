@@ -3,22 +3,27 @@ import { listByBucketRandom } from '../graphql/queries';
 
 export async function fetchMockQuestions(N = 10) {
   try {
+    console.log('🔍 fetchMockQuestions: Starting to fetch questions...');
     const client = generateClient(); // Call after Amplify.configure has run
     const bucket = Math.floor(Math.random() * 100);
+    console.log('🔍 fetchMockQuestions: Using bucket:', bucket);
 
     const a = await client.graphql({
       query: listByBucketRandom,
       variables: { bucket, limit: N }
     });
+    console.log('🔍 fetchMockQuestions: First query result:', a?.data?.listByBucketRandom?.items?.length || 0, 'questions');
     let items = a?.data?.listByBucketRandom?.items ?? [];
 
     if (items.length < N) {
       // Try a different bucket if we don't have enough questions
       const bucket2 = Math.floor(Math.random() * 100);
+      console.log('🔍 fetchMockQuestions: Trying second bucket:', bucket2);
       const b = await client.graphql({
         query: listByBucketRandom,
         variables: { bucket: bucket2, limit: N - items.length }
       });
+      console.log('🔍 fetchMockQuestions: Second query result:', b?.data?.listByBucketRandom?.items?.length || 0, 'questions');
       items = items.concat(b?.data?.listByBucketRandom?.items ?? []);
     }
 
@@ -28,7 +33,21 @@ export async function fetchMockQuestions(N = 10) {
       [items[i], items[j]] = [items[j], items[i]];
     }
     
-    return items.slice(0, N);
+    // Transform items to match expected format
+    const transformedItems = items.slice(0, N).map(item => ({
+      id: item.id,
+      text: item.text,
+      answerA: item.answerA,
+      answerB: item.answerB,
+      answerC: item.answerC,
+      answerD: item.answerD,
+      correctAnswer: item.correctAnswer
+    }));
+    
+    console.log('🔍 fetchMockQuestions: Returning', transformedItems.length, 'questions');
+    console.log('🔍 fetchMockQuestions: Sample question:', transformedItems[0]);
+    
+    return transformedItems;
   } catch (error) {
     console.error('Error fetching questions:', error);
     // Return demo questions if database is unavailable
