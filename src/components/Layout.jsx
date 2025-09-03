@@ -5,7 +5,7 @@ import Header from "../assets/components/Navbar";
 import Footer from "./Footer";
 import Dashboard from "../views/Dashboard";
 import PracticeTests from "../views/PracticeTests";
-import Exam_01 from "../views/exam_01";
+
 // import routes from "../routes"; // Removed import
 
 function Layout() {
@@ -45,12 +45,7 @@ function Layout() {
             icon: "nc-icon nc-paper",
             layout: "/account"
           },
-          {
-            path: "/exam_01",
-            name: "Exam 01",
-            icon: "nc-icon nc-notes",
-            layout: "/account"
-          },
+
           {
             path: "/settings",
             name: "Settings",
@@ -71,7 +66,7 @@ function Layout() {
             <Route path="/study-materials" element={<div>Coming Soon: Study Materials</div>} />
             <Route path="/progress" element={<div>Coming Soon: Progress</div>} />
             <Route path="/practice-tests" element={<PracticeTests />} />
-            <Route path="/exam_01" element={<Exam_01 />} />
+
             <Route path="/settings" element={<div>Coming Soon: Settings</div>} />
           </Routes>
         </div>
