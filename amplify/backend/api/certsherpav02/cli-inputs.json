@@ -8,6 +8,10 @@
       "cognitoUserPoolId": "authcertsherpav02f14afe9f"
     },
     "conflictResolution": {},
-    "additionalAuthTypes": []
+    "additionalAuthTypes": [
+      {
+        "mode": "AWS_IAM"
+      }
+    ]
   }
 }

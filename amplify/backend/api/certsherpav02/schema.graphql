@@ -1,22 +1,34 @@
 type Question
   @model
   @auth(rules: [
-    { allow: private, operations: [create, read, update, delete] }  # any signed-in user
+    # Signed-in users via your Cognito User Pool
+    { allow: private, provider: userPools, operations: [create, read, update, delete] },
+    # Studio/Data Manager actions (CSV import) via IAM
+    { allow: private, provider: iam, operations: [create, read, update, delete] }
   ]) {
-  id: ID!
-  text: String!
-  svgKey: String
+  id: ID!                       # can be your QuestionID if you provide it during import
+  questionId: String            # optional human-friendly external ID
+
+  text: String                  # question text
+  svgKey: String                # question SVG key (if any)
+
   answerA: String!
   answerB: String!
   answerC: String!
   answerD: String!
-  correctAnswer: String!   # "A" | "B" | "C" | "D"
+  correctAnswer: String!        # "A" | "B" | "C" | "D"
+  solution: String              # text OR an SVG key
 
-  # Random selection index: partition by bucket, sort by randomIndex
-  bucket: Int!
-    @index(name: "byBucketRandom", queryField: "listByBucketRandom", sortKeyFields: ["randomIndex"])
+  # Random selection helpers (keep these!)
+  bucket: Int! @index(
+    name: "byBucketRandom"
+    sortKeyFields: ["randomIndex"]
+    queryField: "listByBucketRandom"
+  )
   randomIndex: Float!
 
+  # Optional metadata
   tags: [String]
   difficulty: Int
+  geneIndex: Int                # keep it if you like; handy for your own bucketing/filters
 }
